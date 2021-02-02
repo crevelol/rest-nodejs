@@ -5,9 +5,11 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const { request } = require("http");
 const path = require('path')
+var cors = require('cors');
 
 const app = express();
 
+app.use(cors({ origin: '*' }));
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
