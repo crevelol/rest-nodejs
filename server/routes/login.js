@@ -42,7 +42,8 @@ app.post('/login', (req, res) => {
             // Si todo va bien
         res.json({
             ok: true,
-            token
+            token,
+            usuario: usuarioDB
         })
 
     });
