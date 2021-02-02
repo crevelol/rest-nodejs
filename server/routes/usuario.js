@@ -7,12 +7,12 @@ const { verificaToken, verificaAdminRole } = require('../middlewares/autenticaci
 
 const app = express();
 
-app.get("/usuario", [verificaToken, verificaAdminRole], function(req, res) {
+app.get("/usuario/:desde/:limite", [verificaToken, verificaAdminRole], function(req, res) {
 
-    let desde = req.query.desde || 0;
+    let desde = req.params.desde || 0;
     desde = Number(desde);
 
-    let limite = req.query.limite || 5;
+    let limite = req.params.limite || 5;
     limite = Number(limite);
 
     Usuario.find({ role: 'USER ROLE' }, 'nombre apellido email telefono direccion nacimiento sexo role')
