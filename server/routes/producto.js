@@ -102,9 +102,9 @@ app.post("/registro", [verificaToken, verificaAdminRole], function(req, res) {
 
 app.put("/producto/:id", [verificaToken, verificaAdminRole], function(req, res) {
     let id = req.params.id;
-    let body = _.pick(req.body, ['producto', 'tipo', 'cantidad', 'precio']);
+    let update = req.body
 
-    Usuario.findByIdAndUpdate(id, body, { new: true, runValidators: true, context: 'query' }, (err, usuarioDB) => {
+    Usuario.findByIdAndUpdate(id, update, (err, usuarioDB) => {
 
         if (err) {
             return res.status(400).json({
