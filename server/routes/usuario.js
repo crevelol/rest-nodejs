@@ -7,7 +7,7 @@ const { verificaToken, verificaAdminRole } = require('../middlewares/autenticaci
 
 const app = express();
 
-app.get("/usuario/:desde/:limite", [verificaToken, verificaAdminRole], function(req, res) {
+app.get("/usuario?:desde&:limite", [verificaToken, verificaAdminRole], function(req, res) {
 
     let desde = req.params.desde || 0;
     desde = Number(desde);
