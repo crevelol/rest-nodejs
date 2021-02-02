@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informacion</title>
+</head>
+
+<body>
+    <h1>Bienvenido a nuestro servidor rest</h1>
+    <h2>En esta seccion encontraras la informacion para poder utilizar el servicio REST</h2>
+    <hr>
+    <h3>POST</h3>
+    <hr>
+    <p>Ingresamos un dato del numero de caja que necesitemos ingresar con una peticion POST, este va acompañado de un cuerpo que esta conformado con 3 datos los cuales son:</p>
+    <ul>
+        <li>Numero de cajas: Estas se ingresan como parametro</li>
+        <li>Fecha: Toma la fecha actual</li>
+        <li>Hora: Toma la hora actual</li>
+    </ul>
+    <p>En la siguiente direccion <a href="https://rest-server-revelo.herokuapp.com//registro">aquí</a></p>
+    <h4>Formato</h4>
+    <p>https://rest-server-revelo.herokuapp.com/registro</p>
+    <h4>Body</h4>
+    <table border="1">
+        <tr>
+            <th><strong>KEY</strong></th>
+            <th><strong>VALUE</strong></th>
+        </tr>
+        <tr>
+            <td>n_caja</td>
+            <td>(Valor a ingresar)</td>
+        </tr>
+    </table>
+    <p>En el caso de <strong>VALUE</strong> solo se podra ingresar un numero del 1 al 3 ya que solo existen 3 cajas de atencion</p>
+    <hr>
+    <h3>GET</h3>
+    <hr>
+    <p>Realizamos consultados de dos tipos con nuestra peticion GET y estas son :</p>
+    <ol>
+        <li>
+            <p>Realiza una consulta de todas las cajas que tengas el numero que se pide en la consulta</p>
+            <ul>
+                <li>Numero de caja: Se ingresa como parametro en nuestra ULR</li>
+            </ul>
+            <h4>Formato</h4>
+            <p>https://rest-server-revelo.herokuapp.com//registro/caja/(El numero de caja a elejir)</p>
+            <p>En el caso solo se podra ingresar un numero del 1 al 3 ya que solo existen 3 cajas de atencion</p>
+        </li>
+        <li>
+            <p>Realiza una consulta de todas las cajas que entre las fechas indicadas en la consulta</p>
+            <ul>
+                <li>Desde: Se ingresa como parametro en nuestra ULR la fecha desde cuando comienza a buscar</li>
+                <li>Hasta: Se ingresa como parametro en nuestra ULR la fecha cuando termina de buscar</li>
+            </ul>
+            <h4>Formato</h4>
+            <p>https://rest-server-revelo.herokuapp.com//registro/fecha/(Desde cuando)/(Hasta cuando)</p>
+            <p>El formato de la fecha ingresada debe ser en <strong>yyyy-mm-dd</strong></p>
+        </li>
+    </ol>
+    <hr>
+    <h3>DELETE</h3>
+    <hr>
+    <p>Eliminamos cualquier dato por medio del siguiente parametro :</p>
+    <ul>
+        <li>Id: Estas se ingresan como parametro en la URL</li>
+    </ul>
+    <h4>Formato</h4>
+    <p>https://rest-server-revelo.herokuapp.com//registro/(Id del registro)</p>
+    <p>El <strong>id</strong> es unico y retornara el registro eliminado</p>
+
+</body>
+
+</html>
