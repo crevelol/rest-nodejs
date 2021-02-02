@@ -6,10 +6,10 @@ const { verificaToken, verificaAdminRole } = require('../middlewares/autenticaci
 
 const app = express();
 
-app.get("/producto/cant/:desde/:hasta", verificaToken, function(req, res) {
+app.get("/producto/cant", verificaToken, function(req, res) {
 
-    let cant1 = req.params.desde;
-    let cant2 = req.params.hasta;
+    let cant1 = req.query.desde;
+    let cant2 = req.query.hasta;
 
     Producto.find({ cantidad: { $gte: cant1 }, cantidad: { $lte: cant2 } }, 'producto tipo cantidad precio')
         .exec((err, registro) => {
@@ -21,6 +21,27 @@ app.get("/producto/cant/:desde/:hasta", verificaToken, function(req, res) {
             }
 
             Producto.count({ cantidad: { $gte: cant1 }, cantidad: { $lte: cant2 } }, (err, conteo) => {
+                res.json({
+                    ok: true,
+                    registros: conteo,
+                    registro
+                });
+            });
+        });
+});
+
+app.get("/producto", verificaToken, function(req, res) {
+
+    Producto.find({}, 'producto tipo cantidad precio')
+        .exec((err, registro) => {
+            if (err) {
+                return res.status(400).json({
+                    ok: false,
+                    err,
+                });
+            }
+
+            Producto.count({}, (err, conteo) => {
                 res.json({
                     ok: true,
                     registros: conteo,
