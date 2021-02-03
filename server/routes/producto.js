@@ -74,6 +74,8 @@ app.get("/producto/tipo/:tip", verificaToken, function(req, res) {
         });
 });
 
+//Registrar producto
+
 app.post("/registro", [verificaToken, verificaAdminRole], function(req, res) {
     let body = req.body;
 
