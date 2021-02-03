@@ -103,7 +103,7 @@ app.post("/registro", [verificaToken, verificaAdminRole], function(req, res) {
 app.put("/producto/:id", [verificaToken, verificaAdminRole], function(req, res) {
     let id = req.params.id;
     let update = req.body;
-    console.log(update);
+
     Producto.findByIdAndUpdate(id, update, (err, usuarioDB) => {
 
         if (err) {
@@ -121,8 +121,7 @@ app.put("/producto/:id", [verificaToken, verificaAdminRole], function(req, res) 
     });
 });
 
-/*
-app.delete("/registro/:id", [verificaToken, verificaAdminRole], function(req, res) {
+app.delete("/producto/:id", [verificaToken, verificaAdminRole], function(req, res) {
     let id = req.params.id;
 
     Producto.findByIdAndDelete(id, (err, registroEliminado) => {
@@ -141,5 +140,5 @@ app.delete("/registro/:id", [verificaToken, verificaAdminRole], function(req, re
     });
 
 });
-*/
+
 module.exports = app;
