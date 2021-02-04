@@ -14,6 +14,11 @@ let rolesValidos = {
     message: '{VALUE} no es un sexo valido'
 }
 
+let inscripcionValidos = {
+    values: ['sin pagar', 'pagado', 'promocion'],
+    message: '{VALUE} no es una incripcion valido'
+}
+
 let usuarioSchema = new Schema({
     nombre: {
         type: String,
@@ -41,7 +46,7 @@ let usuarioSchema = new Schema({
         default: 'SIN DIRECCION',
     },
     nacimiento: {
-        type: Date,
+        type: String,
         required: [true, 'El nacimiento es obligatorio']
     },
     sexo: {
@@ -51,7 +56,8 @@ let usuarioSchema = new Schema({
     },
     role: {
         type: String,
-        default: 'USER ROLE'
+        default: 'USER ROLE',
+        enum: rolesValidos
     },
     img: {
         type: String,
@@ -63,7 +69,28 @@ let usuarioSchema = new Schema({
     },
     registro: {
         type: String,
-        required: [true, 'El nacimiento es obligatorio']
+        required: false
+    },
+    inscripcion: {
+        type: String,
+        required: false,
+        enum: inscripcionValidos
+    },
+    monto: {
+        type: String,
+        required: false
+    },
+    pagado: {
+        type: String,
+        required: false
+    },
+    peso: {
+        type: String,
+        required: false
+    },
+    altura: {
+        type: String,
+        required: false
     }
 });
 
