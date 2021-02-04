@@ -15,7 +15,7 @@ app.get("/usuario", [verificaToken, verificaAdminRole], function(req, res) {
     let limite = req.query.limite || 5;
     limite = Number(limite);
 
-    Usuario.find({ role: 'USER ROLE' }, 'nombre apellido email telefono direccion nacimiento sexo role')
+    Usuario.find({ role: 'USER ROLE' }, 'nombre apellido email telefono direccion nacimiento sexo role estado')
         .skip(desde)
         .limit(limite)
         .exec((err, usuarios) => {
@@ -79,9 +79,9 @@ app.post("/usuario", function(req, res) {
 
 app.put("/usuario/:id", [verificaToken, verificaAdminRole], function(req, res) {
     let id = req.params.id;
-    let body = _.pick(req.body, ['nombre', 'apellido', 'email', 'telefono', 'direccion', 'nacimiento', 'sexo', 'role']);
+    let body = req.body;
 
-    Usuario.findByIdAndUpdate(id, body, { new: true, runValidators: true, context: 'query' }, (err, usuarioDB) => {
+    Usuario.findByIdAndUpdate(id, body, (err, usuarioDB) => {
 
         if (err) {
             return res.status(400).json({

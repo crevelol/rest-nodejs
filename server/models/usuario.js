@@ -62,7 +62,7 @@ let usuarioSchema = new Schema({
         default: true,
     },
     registro: {
-        type: Date,
+        type: String,
         required: [true, 'El nacimiento es obligatorio']
     }
 });
