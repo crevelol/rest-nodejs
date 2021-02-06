@@ -7,6 +7,29 @@ const { verificaToken, verificaAdminRole } = require('../middlewares/autenticaci
 
 const app = express();
 
+app.get("/usuario/pagos/:id", verificaToken, function(req, res) {
+
+    let id = req.params.id;
+
+    Usuario.find({ id: id }, 'registro inscripcion monto pagado')
+        .exec((err, usuarios) => {
+            if (err) {
+                return res.status(400).json({
+                    ok: false,
+                    err,
+                });
+            }
+
+            Usuario.count({ id: id }, (err, conteo) => {
+                res.json({
+                    ok: true,
+                    registros: conteo,
+                    usuarios
+                });
+            });
+        });
+});
+
 app.get("/usuario", [verificaToken, verificaAdminRole], function(req, res) {
 
     let desde = req.query.desde || 0;
