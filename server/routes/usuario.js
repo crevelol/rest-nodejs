@@ -11,7 +11,7 @@ app.get("/usuario/pagos/:id", verificaToken, function(req, res) {
 
     let id = req.params.id;
 
-    Usuario.find({ _id: id }, 'registro inscripcion monto pagado')
+    Usuario.find({ _id: id }, 'estado registro inscripcion monto pagado peso altura')
         .exec((err, usuarios) => {
             if (err) {
                 return res.status(400).json({

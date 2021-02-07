@@ -91,6 +91,10 @@ let usuarioSchema = new Schema({
     altura: {
         type: String,
         required: false
+    },
+    siguiente: {
+        type: String,
+        required: false
     }
 });
 

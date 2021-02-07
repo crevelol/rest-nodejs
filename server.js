@@ -7,6 +7,8 @@ const { request } = require("http");
 const path = require('path')
 var cors = require('cors');
 
+var cron = require('node-cron');
+
 const app = express();
 
 app.use(cors({ origin: '*' }));
@@ -35,3 +37,7 @@ app.get('/', (request, response) => {
 app.listen(process.env.PORT, () => {
     console.log("Escuchando en el puerto: ", process.env.PORT);
 });
+
+/*cron.schedule('1 * * * *', () => {
+    console.log('running a task every minute');
+  });*/
