@@ -32,7 +32,7 @@ app.get("/usuario/pagos/:id", verificaToken, function(req, res) {
 
 app.get("/usuario/todos", function(req, res) {
 
-    Usuario.find({ role: 'USER ROLE' }, 'nombre apellido email telefono direccion nacimiento sexo role estado')
+    Usuario.find({ role: 'USER ROLE' }, 'nombre apellido estado siguiente registro pagado')
         .exec((err, usuarios) => {
             if (err) {
                 return res.status(400).json({
@@ -121,7 +121,7 @@ app.post("/usuario", function(req, res) {
 
 });
 
-app.put("/usuario/:id", verificaToken, function(req, res) {
+app.put("/usuario/:id", function(req, res) {
     let id = req.params.id;
     let body = req.body;
 
