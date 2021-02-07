@@ -11,7 +11,7 @@ app.get("/usuario/pagos/:id", verificaToken, function(req, res) {
 
     let id = req.params.id;
 
-    Usuario.find({ _id: id }, 'estado registro inscripcion monto pagado peso altura')
+    Usuario.find({ _id: id }, 'estado registro inscripcion monto pagado peso altura siguiente')
         .exec((err, usuarios) => {
             if (err) {
                 return res.status(400).json({
@@ -100,7 +100,7 @@ app.post("/usuario", function(req, res) {
 
 });
 
-app.put("/usuario/:id", [verificaToken, verificaAdminRole], function(req, res) {
+app.put("/usuario/:id", verificaToken, function(req, res) {
     let id = req.params.id;
     let body = req.body;
 
