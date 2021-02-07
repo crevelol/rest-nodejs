@@ -30,6 +30,27 @@ app.get("/usuario/pagos/:id", verificaToken, function(req, res) {
         });
 });
 
+app.get("/usuario/todos", function(req, res) {
+
+    Usuario.find({ role: 'USER ROLE' }, 'nombre apellido email telefono direccion nacimiento sexo role estado')
+        .exec((err, usuarios) => {
+            if (err) {
+                return res.status(400).json({
+                    ok: false,
+                    err,
+                });
+            }
+
+            Usuario.count({ role: 'USER ROLE' }, (err, conteo) => {
+                res.json({
+                    ok: true,
+                    registros: conteo,
+                    usuarios
+                });
+            });
+        });
+});
+
 app.get("/usuario", [verificaToken, verificaAdminRole], function(req, res) {
 
     let desde = req.query.desde || 0;

@@ -1,5 +1,7 @@
 require("./server/config/config");
 
+const axios = require('axios');
+
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -38,6 +40,12 @@ app.listen(process.env.PORT, () => {
     console.log("Escuchando en el puerto: ", process.env.PORT);
 });
 
-/*cron.schedule('1 * * * *', () => {
-    console.log('running a task every minute');
-  });*/
+cron.schedule('*/10 * * * * *', () => {
+    axios.get(`https://rest-nodejs-mongodb.herokuapp.com/usuario/todos`)
+        .then(res => {
+            const pa = res.data;
+            var m = Object.values(pa);
+            console.log(m);
+            //this.setState({ usuarios: this.state.usuarios[0] })
+        })
+});
