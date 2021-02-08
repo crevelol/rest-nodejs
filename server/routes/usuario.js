@@ -56,10 +56,11 @@ app.get("/usuario", [verificaToken, verificaAdminRole], function(req, res) {
     let desde = req.query.desde || 0;
     desde = Number(desde);
 
-    let limite = req.query.limite || 5;
+    let limite = req.query.limite || 10;
     limite = Number(limite);
 
-    Usuario.find({ role: 'USER ROLE' }, 'nombre apellido email telefono direccion nacimiento sexo role estado')
+    Usuario.find({ role: 'USER ROLE' },
+            'nombre apellido email telefono direccion nacimiento sexo role estado registro pagado siguiente monto inscripcion')
         .skip(desde)
         .limit(limite)
         .exec((err, usuarios) => {
